@@ -25,9 +25,9 @@ export async function setupTargetAndCurrentWorkspaceGitRepo(targetTestRepoName: 
   const git1 = simpleGit({ baseDir: targetDir });
   // No function for "add all"
   await git1
+    .init()
     .addConfig('user.name', 'Some One')
     .addConfig('user.email', 'some@one.com')
-    .init()
     .add(['Test.svg', 'Test2.svg'])
     .commit('whatever')
   process.env.__TEST_TARGET_WORKSPACE_DIR = targetDir;
@@ -45,9 +45,9 @@ export async function setupTargetAndCurrentWorkspaceGitRepo(targetTestRepoName: 
   const git2 = simpleGit({ baseDir: currentWorkspaceDir });
   // No function for "add all"
   await git2
+    .init()
     .addConfig('user.name', 'Some One')
     .addConfig('user.email', 'some@one.com')
-    .init()
     .add(['Test.svg', 'Test2.svg'])
     .commit('whatever')
   // Copy but don't add or commit anything
