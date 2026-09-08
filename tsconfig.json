@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "noUncheckedIndexedAccess": true,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "isolatedModules": true
+  },
+  "exclude": ["tests", "dist", "node_modules", "**/*.test.ts", "**/*.spec.ts"]
+}

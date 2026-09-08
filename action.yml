@@ -1,0 +1,22 @@
+name: file-size-diff
+description: Create file size differences as text output to be included in PR body/comments
+author: PikachuEXE
+inputs:
+  token:
+    description: 'The token that the action will use to create and update the pull request.'
+    default: ${{ github.token }}
+  target_branch:
+    description: The target branch to compare the diff against
+    required: true
+  dir_glob:
+    description: A comma seperated list of globs to compare across branches
+    default: ''
+  file_details_open:
+    default: false
+    description: Do not render a collapsible section for the files
+outputs:
+  file_size_diff_content_markdown:
+    description: 'The file size differences in markdown'
+runs:
+  using: node24
+  main: dist/index.js

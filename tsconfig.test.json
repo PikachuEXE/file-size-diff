@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Include test files in compilation
+    "rootDir": ".",
+    "baseUrl": "./",
+
+    // No need to emit files for tests
+    "noEmit": true,
+
+    // Allow importing test utilities
+    "types": ["jest", "node"],
+
+    "isolatedModules": true,
+    "paths": {
+      "src/*": ["./src/*"],
+      "fixtures/*": ["./tests/fixtures/*"]
+    }
+  },
+  "include": ["src/**/*", "tests/**/*.ts", "**/*.test.ts", "**/*.spec.ts"]
+}
