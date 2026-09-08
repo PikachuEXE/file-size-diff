@@ -8,6 +8,6 @@ const config = {
   tabWidth: 2,
   bracketSpacing: true,
   trailingComma: 'all',
-};
+}
 
-export default config;
+export default config

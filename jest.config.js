@@ -52,6 +52,6 @@ const jestConfig = {
   // Clear mocks between tests
   clearMocks: true,
   restoreMocks: true,
-};
+}
 
-export default jestConfig;
+export default jestConfig
