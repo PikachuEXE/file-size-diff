@@ -10,7 +10,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true,

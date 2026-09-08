@@ -2,4 +2,3 @@
 node_modules
 .jest-cache
 .coverage
-dist
