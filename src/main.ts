@@ -154,9 +154,6 @@ const getFileStats = async (
 ) => {
   const stats = await fs.promises.stat(path.resolve(baseDir, file))
 
-  // Remove the GitHub file path from the repo file path
-  // const filePath = getLogicalFilePath(file, useCurrentWorkspace, label);
-
   branchStats.totalSize += stats.size
   branchStats.files[file] = {
     size: stats.size,
@@ -202,12 +199,17 @@ const getBranchStatsV2 = async (
     } else {
       const tempDir = '.file-size-diff'
       cwd = `../${tempDir}/${branch}`
+      debug(`[${label}] cwd for target: ${cwd}`)
       await fs.promises.cp('.', cwd, { recursive: true })
+      debug(`[${label}] Copied workspace to ${cwd}`)
       await exec('git', ['fetch', 'origin', branch], { cwd })
+      debug(`[${label}] Fetched origin for <${branch}> in ${cwd}`)
       await exec('git', ['checkout', branch], { cwd })
+      debug(`[${label}] Checkouted <${branch}> in ${cwd}`)
     }
   }
 
+  debug(`[${label}] cwd: ${cwd}`)
   let finalToBeFilteredPaths: string[] | undefined
   if (useCurrentWorkspace) {
     finalToBeFilteredPaths = await git.getDirtyFilePaths([], { cwd })
@@ -229,13 +231,9 @@ const getBranchStatsV2 = async (
 
   // Log first few file paths for debugging
   if (files.length > 0) {
-    const sampleFiles = files
-      .slice(0, 3)
-      .map((path: string) =>
-        getLogicalFilePath(path, useCurrentWorkspace, label),
-      )
+    const sampleFiles = files.slice(0, 3)
     info(
-      `[${branch}] Sample files: ${sampleFiles.join(', ')}${files.length > 3 ? '...' : ''}`,
+      `[${label}] Sample files: ${sampleFiles.join(', ')}${files.length > 3 ? '...' : ''}`,
     )
   }
 
@@ -249,16 +247,9 @@ const getBranchStatsV2 = async (
   )
 
   info(`[${label}] Completed file stats`)
+  debug(`[${label}] branchStats: ${inspect(branchStats)}`)
 
   return branchStats
-}
-
-const getLogicalFilePath = (
-  path: string,
-  useCurrentWorkspace: boolean,
-  label = '',
-): string => {
-  return useCurrentWorkspace ? path : path.split(`${label}/`).slice(1)[0]!
 }
 
 const getCommonStringStart = (strings: string[]): string => {
