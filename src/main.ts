@@ -204,7 +204,7 @@ const getBranchStatsV2 = async (
       debug(`[${label}] Copied workspace to ${cwd}`)
       await exec('git', ['fetch', 'origin', branch], { cwd })
       debug(`[${label}] Fetched origin for <${branch}> in ${cwd}`)
-      await exec('git', ['checkout', branch], { cwd })
+      await exec('git', ['checkout', '--force', branch], { cwd })
       debug(`[${label}] Checkouted <${branch}> in ${cwd}`)
     }
   }
