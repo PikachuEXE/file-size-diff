@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build": "tsc --noEmit && npx rimraf ./dist && ncc build src/index.ts --minify --license LICENSE",
+    "watch": "tsc --noEmit && npx rimraf ./dist && ncc build src/index.ts --minify --license LICENSE --watch",
     "format": "prettier --write 'src/**/*.ts' '*.config.js' '*.config.mjs'",
     "format-check": "prettier --check 'src/**/*.ts' '*.config.js' '*.config.mjs'",
     "lint": "npx eslint .",
